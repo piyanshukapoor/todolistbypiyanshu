@@ -1,0 +1,54 @@
+tasks = []
+
+def display_tasks():
+    print("To-Do List:")
+    for i, task in enumerate(tasks):
+        print(f"{i+1}. {task}")
+
+def add_task():
+    task = input("Enter a new task: ")
+    tasks.append(task)
+    print(f"{task} has been added to the list.")
+
+def edit_task():
+    display_tasks()
+    index = int(input("Enter the number of the task you want to edit: "))
+    if index < 1 or index > len(tasks):
+        print("Invalid task number.")
+        return
+    new_task = input(f"Enter the new task (currently: {tasks[index-1]}): ")
+    tasks[index-1] = new_task
+    print(f"Task {index} has been updated to: {new_task}")
+
+def delete_task():
+    display_tasks()
+    index = int(input("Enter the number of the task you want to delete: "))
+    if index < 1 or index > len(tasks):
+        print("Invalid task number.")
+        return
+    deleted_task = tasks.pop(index-1)
+    print(f"{deleted_task} has been removed from the list.")
+
+while True:
+    print("\nWhat would you like to do?")
+    print("1. Display tasks")
+    print("2. Add a task")
+    print("3. Edit a task")
+    print("4. Delete a task")
+    print("5. Quit")
+
+    choice = input("Enter your choice (1-5): ")
+
+    if choice == "1":
+        display_tasks()
+    elif choice == "2":
+        add_task()
+    elif choice == "3":
+        edit_task()
+    elif choice == "4":
+        delete_task()
+    elif choice == "5":
+        print("Goodbye!")
+        break
+    else:
+        print("Invalid choice. Please try again.")
